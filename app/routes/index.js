@@ -1,10 +1,12 @@
 'use strict';
 
-var path = process.cwd();
-	// searchUtil = require("../utils/searchUtil"),
+let path = process.cwd(),
+	moment = require('moment'),
+	yahooFinance = require('yahoo-finance');
 
 
-module.exports = function (app, passport) {
+
+module.exports = (app, passport) => {
 
 	// app.route('/api/search')
 	// 	.get(function(req, res) {
@@ -19,6 +21,29 @@ module.exports = function (app, passport) {
 	// 			res.json({success: success, result: result})
 	// 		});
 	// 	});
+
+	app.get('/api/stock_quotes', (req, res) => {
+		const DAYS_IN_YEAR = 365,
+			  DATE_FORMAT = 'YYYY-MM-DD';
+
+		let currentDate = moment().format(DATE_FORMAT),
+			aYearAgo = moment().subtract(DAYS_IN_YEAR, 'days').format(DATE_FORMAT),
+			symbol = req.query.symbol;
+
+		yahooFinance.historical({
+		  symbol: symbol,
+		  from: aYearAgo,
+		  to: currentDate
+		}, (err, quotes) => {
+		  if(err || quotes.length < 1) { return res.json({success: false}); }
+
+		  let closes = quotes.map( (quote) =>{
+			return quote.close;
+		  });
+
+		  res.json({success: true, closes});
+		});
+	});
 
 	app.get("*", function (req, res) {
 			res.sendFile(path + '/public/index.html');
