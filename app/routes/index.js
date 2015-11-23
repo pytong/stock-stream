@@ -37,9 +37,13 @@ module.exports = (app, passport) => {
 		}, (err, quotes) => {
 		  if(err || quotes.length < 1) { return res.json({success: false}); }
 
-		  let closes = quotes.map( (quote) =>{
-			return quote.close;
-		  });
+		  let date,
+			epochTime,
+			closes = quotes.map( (quote) => {
+				date = new Date(quote.date);
+				epochTime = date.getTime();
+				return [epochTime, quote.close];
+			});
 
 		  res.json({success: true, closes});
 		});
