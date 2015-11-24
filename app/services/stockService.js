@@ -8,5 +8,9 @@
             return $resource(appUrl + "/api/stock_quotes?symbol=:symbol", {symbol: "@symbol"});
         }
 
+        this.symbols = () => {
+            return $resource(appUrl + "/api/symbols");
+        }
+
     }]);
 })(app);

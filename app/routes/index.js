@@ -9,12 +9,19 @@ let path = process.cwd(),
 
 module.exports = (app, passport) => {
 
-	app.post("/api/symbol", (req, post) => {
+	app.post("/api/symbol", (req, res) => {
 		let symbol = req.query.symbol;
 
+		stockUtil.addSymbol(symbol, function(success, result) {
+			if(success === false) {
+				return res.json({success: false, message: result});
+			}
+
+			res.json({success: true});
+		});
 	});
 
-	app.get("/api/all_symbols", (req, res) => {
+	app.get("/api/symbols", (req, res) => {
 		stockUtil.getAllSymbols(function(success, result) {
 			if(success === false) {
 				return res.json({success: false, message: result})
