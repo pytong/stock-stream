@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Stock Stream App - Charting the Stock Market .</title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+
+		<script	type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-resource.min.js"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://code.highcharts.com/stock/highstock.js"></script>
+	</head>
+
+	<body ng-app="StockStreamApp">
+		<div class="container">
+			<div ng-view></div>
+		</div>
+
+		<!-- app -->
+		<script src="stockStreamApp.js"></script>
+
+		<!-- service -->
+		<script src="services/stockService.js"></script>
+
+		<!-- controller -->
+		<script src="controllers/mainController.js"></script>
+
+		<!-- helper -->
+		<script src="helpers/chartHelper.js"></script>
+	</body>
+
+</html>

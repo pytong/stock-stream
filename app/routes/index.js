@@ -1,33 +1,36 @@
-'use strict';
+"use strict";
 
 let path = process.cwd(),
-	moment = require('moment'),
-	yahooFinance = require('yahoo-finance');
+	moment = require("moment"),
+	yahooFinance = require("yahoo-finance"),
+	stockUtil = require("../utils/stockUtil");
 
 
 
 module.exports = (app, passport) => {
 
-	// app.route('/api/search')
-	// 	.get(function(req, res) {
-	// 		var location = req.query.location;
+	app.post("/api/symbol", (req, post) => {
+		let symbol = req.query.symbol;
 
-	// 		if(req.isAuthenticated()) {
-	// 			req.user.lastSearchTerms = location;
-	// 			req.user.save();
-	// 		}
+	});
 
-	// 		searchUtil.search(location, function(success, result) {
-	// 			res.json({success: success, result: result})
-	// 		});
-	// 	});
+	app.get("/api/all_symbols", (req, res) => {
+		stockUtil.getAllSymbols(function(success, result) {
+			if(success === false) {
+				return res.json({success: false, message: result})
+			}
 
-	app.get('/api/stock_quotes', (req, res) => {
+			res.json({success: true, result: result});
+		});
+
+	});
+
+	app.get("/api/stock_quotes", (req, res) => {
 		const DAYS_IN_YEAR = 365,
-			  DATE_FORMAT = 'YYYY-MM-DD';
+			  DATE_FORMAT = "YYYY-MM-DD";
 
 		let currentDate = moment().format(DATE_FORMAT),
-			aYearAgo = moment().subtract(DAYS_IN_YEAR, 'days').format(DATE_FORMAT),
+			aYearAgo = moment().subtract(DAYS_IN_YEAR, "days").format(DATE_FORMAT),
 			symbol = req.query.symbol;
 
 		yahooFinance.historical({
@@ -50,7 +53,7 @@ module.exports = (app, passport) => {
 	});
 
 	app.get("*", (req, res)  => {
-			res.sendFile(path + '/public/index.html');
+			res.sendFile(path + "/public/index.html");
 		});
 
 };
