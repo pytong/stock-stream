@@ -35,7 +35,7 @@ module.exports = (app, passport) => {
 		  from: aYearAgo,
 		  to: currentDate
 		}, (err, quotes) => {
-		  if(err || quotes.length < 1) { return res.json({success: false}); }
+		  if(err || quotes.length < 1) { return res.json({success: false, message: "Stock not found."}); }
 
 		  let date,
 			epochTime,
@@ -49,7 +49,7 @@ module.exports = (app, passport) => {
 		});
 	});
 
-	app.get("*", function (req, res) {
+	app.get("*", (req, res)  => {
 			res.sendFile(path + '/public/index.html');
 		});
 

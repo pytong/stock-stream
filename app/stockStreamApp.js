@@ -1,6 +1,6 @@
 var app = angular.module("StockStreamApp", ["ngResource", "ngRoute"]);
 
-app.config(function($locationProvider, $routeProvider) {
+app.config(($locationProvider, $routeProvider) => {
 
     $routeProvider
     .when("/", {
