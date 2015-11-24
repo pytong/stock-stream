@@ -9,7 +9,7 @@
         }
 
         this.symbols = () => {
-            return $resource(appUrl + "/api/symbols");
+            return $resource(appUrl + "/api/symbols", {symbol: "@symbol"});
         }
 
     }]);

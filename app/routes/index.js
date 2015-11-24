@@ -9,28 +9,28 @@ let path = process.cwd(),
 
 module.exports = (app, passport) => {
 
-	app.post("/api/symbol", (req, res) => {
-		let symbol = req.query.symbol;
+	app.route("/api/symbols")
+		.post((req, res) => {
+			let symbol = req.query.symbol;
 
-		stockUtil.addSymbol(symbol, function(success, result) {
-			if(success === false) {
-				return res.json({success: false, message: result});
-			}
+			stockUtil.addSymbol(symbol, function(success, result) {
+				if(success === false) {
+					return res.json({success: false, message: result});
+				}
 
-			res.json({success: true});
+				res.json({success: true});
+			});
+		})
+		.get((req, res) => {
+			stockUtil.getAllSymbols(function(success, result) {
+				if(success === false) {
+					return res.json({success: false, message: result})
+				}
+
+				res.json({success: true, result: result});
+			});
+
 		});
-	});
-
-	app.get("/api/symbols", (req, res) => {
-		stockUtil.getAllSymbols(function(success, result) {
-			if(success === false) {
-				return res.json({success: false, message: result})
-			}
-
-			res.json({success: true, result: result});
-		});
-
-	});
 
 	app.get("/api/stock_quotes", (req, res) => {
 		const DAYS_IN_YEAR = 365,

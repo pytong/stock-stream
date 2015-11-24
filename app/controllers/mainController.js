@@ -4,22 +4,22 @@
 
     app.controller("MainController", ["$scope", "StockService", ($scope, StockService) => {
 
-        let seriesOptions = [],
-            seriesCounter = 0,
-            symbols;
-
+        $scope.drawChart = () => {
             StockService.symbols().get({}, (res) => {
                 if(res.success === false) {
                     $scope.errorMessage = res.message;
                     return;
                 }
 
+                let seriesOptions = [],
+                    seriesCounter = 0,
+                    symbols;
+
                 symbols = res.result;
                 $.each(symbols, (index, symbol) => {
 
                     StockService.quotes().get({symbol: symbol}, (res) => {
                         if(res.success === true) {
-
                             seriesOptions[index] = {
                                 name: symbol,
                                 data: res.closes
@@ -34,12 +34,25 @@
                             }
 
                         } else {
-                            $scope.errorMessage = res.message;
+                                $scope.errorMessage = res.message;
                         }
                     });
 
                 });
             });
+        }
+
+        $scope.addStock = (symbol) => {
+            StockService.symbols().save({symbol: symbol}, function(res) {
+                if(res.success === true) {
+                    $scope.drawChart();
+                } else {
+                    $scope.errorMessage = res.message;
+                }
+            });
+        }
+
+        $scope.drawChart();
 
     }]);
 })(app);
