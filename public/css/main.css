@@ -30,6 +30,19 @@ body {
 	min-width: 310px
 }
 
-.symbol, .search-btn {
+.symbol, .search-btn{
   margin: 10px;
+}
+
+.stock-labels {
+  margin: 20px;
+}
+
+.stock-label {
+  border-radius: 8px;
+  padding: 5px 15px;
+}
+
+.stock-label:hover {
+  background-color: #eee;
 }

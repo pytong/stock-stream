@@ -12,11 +12,10 @@
                 }
 
                 let seriesOptions = [],
-                    seriesCounter = 0,
-                    symbols;
+                    seriesCounter = 0;
 
-                symbols = res.result;
-                $.each(symbols, (index, symbol) => {
+                $scope.symbols = res.result;
+                $.each($scope.symbols, (index, symbol) => {
 
                     StockService.quotes().get({symbol: symbol}, (res) => {
                         if(res.success === true) {
@@ -29,8 +28,8 @@
                             // we keep a counter and create the chart when all the data is loaded.
                             seriesCounter += 1;
 
-                            if (seriesCounter === symbols.length) {
-                                createChart($("#chart"), seriesOptions, seriesCounter, symbols);
+                            if (seriesCounter === $scope.symbols.length) {
+                                createChart($("#chart"), seriesOptions, seriesCounter, $scope.symbols);
                             }
 
                         } else {

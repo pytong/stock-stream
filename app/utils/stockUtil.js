@@ -23,7 +23,7 @@ module.exports = {
 
             if(typeof(stock) === "undefined" || stock === null) {
                 stock = new Stock();
-                stock.symbol = symbol;
+                stock.symbol = symbol.toUpperCase();
 
                 stock.save(function(err) {
                    if(err) { return callback(false, errorMessage); }

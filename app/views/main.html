@@ -1,6 +1,12 @@
 <h1>Stock Stream</h1>
 <div id="chart"></div>
 
+<div class="stock-labels row">
+    <div class="stock-label col-sm-12 col-md-3" ng-repeat="symbol in symbols">
+        {{ symbol }}
+    </div>
+</div>
+
 <form novalidate name="form" ng-submit="addStock(stock.symbol)" method="post">
     <div class="col-md-8">
         <input type="text" class="form-control symbol text-center" placeholder="Stock Symbol" ng-model="stock.symbol">
