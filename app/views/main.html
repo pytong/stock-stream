@@ -1,11 +1,11 @@
 <h1>Stock Stream</h1>
 <div id="chart"></div>
 
-<form novalidate name="form" ng-submit="searchForBusinesses(search.location)" method="post">
+<form novalidate name="form" ng-submit="addStock(stock.symbol)" method="post">
     <div class="col-md-8">
-        <input type="text" class="form-control location text-center" placeholder="Where will you be?" ng-model="search.location">
+        <input type="text" class="form-control symbol text-center" placeholder="Stock Symbol" ng-model="stock.symbol">
     </div>
     <div class="col-md-4">
-        <input type="submit" class="btn search-btn btn-block" value="Go" />
+        <input type="submit" class="btn search-btn btn-block" value="Add" />
     </div>
 </form>

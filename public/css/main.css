@@ -29,3 +29,7 @@ body {
 	height: 600px;
 	min-width: 310px
 }
+
+.symbol, .search-btn {
+  margin: 10px;
+}
