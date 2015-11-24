@@ -42,13 +42,25 @@
         }
 
         $scope.addStock = (symbol) => {
-            StockService.symbols().save({symbol: symbol}, function(res) {
+            StockService.symbols().save({symbol: symbol}, (res) => {
                 if(res.success === true) {
                     $scope.drawChart();
+                    $(".symbol").val("");
                 } else {
                     $scope.errorMessage = res.message;
                 }
             });
+        }
+
+        $scope.removeStock = (symbol) => {
+            StockService.symbols().delete({symbol: symbol}, (res) => {
+                if(res.success === true) {
+                    $scope.drawChart();
+                    $(".symbol").val("");
+                } else {
+                    $scope.errorMessage = res.message;
+                }
+            })
         }
 
         $scope.drawChart();

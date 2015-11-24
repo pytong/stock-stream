@@ -3,7 +3,7 @@
 
 <div class="stock-labels row">
     <div class="stock-label col-sm-12 col-md-3" ng-repeat="symbol in symbols">
-        {{ symbol }}
+        {{ symbol }}<span class="remove-stock" ng-click="removeStock(symbol)">x</span>
     </div>
 </div>
 

@@ -1,4 +1,4 @@
-var app = angular.module("StockStreamApp", ["ngResource", "ngRoute"]);
+let app = angular.module("StockStreamApp", ["ngResource", "ngRoute"]);
 
 app.config(($locationProvider, $routeProvider) => {
 

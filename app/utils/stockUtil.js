@@ -18,19 +18,27 @@ module.exports = {
     addSymbol: (symbol, callback) => {
         let errorMessage = "Failed to add stock. Please try again later.";
 
-        Stock.findOne({symbol: symbol}, function(err, stock) {
+        Stock.findOne({symbol: symbol}, (err, stock) => {
             if(err) { return callback(false, errorMessage); }
 
             if(typeof(stock) === "undefined" || stock === null) {
                 stock = new Stock();
                 stock.symbol = symbol.toUpperCase();
 
-                stock.save(function(err) {
+                stock.save((err) => {
                    if(err) { return callback(false, errorMessage); }
 
                    callback(true);
                 });
             }
+        });
+    },
+
+    removeSymbol: (symbol, callback) => {
+        Stock.remove({symbol: symbol}, (err) => {
+            if(err) { return callback(false, "Failed to remove stock. Please try again later."); }
+
+            callback(true);
         });
     }
 

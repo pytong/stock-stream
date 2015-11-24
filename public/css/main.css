@@ -46,3 +46,19 @@ body {
 .stock-label:hover {
   background-color: #eee;
 }
+
+.remove-stock {
+  float: right;
+}
+
+.remove-stock {
+  border-radius: 5px;
+  padding: 0 8px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.remove-stock:hover {
+  color: #aaa;
+  font-weight: bold;
+}

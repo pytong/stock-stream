@@ -13,7 +13,7 @@ module.exports = (app, passport) => {
 		.post((req, res) => {
 			let symbol = req.query.symbol;
 
-			stockUtil.addSymbol(symbol, function(success, result) {
+			stockUtil.addSymbol(symbol, (success, result) => {
 				if(success === false) {
 					return res.json({success: false, message: result});
 				}
@@ -22,7 +22,7 @@ module.exports = (app, passport) => {
 			});
 		})
 		.get((req, res) => {
-			stockUtil.getAllSymbols(function(success, result) {
+			stockUtil.getAllSymbols((success, result) => {
 				if(success === false) {
 					return res.json({success: false, message: result})
 				}
@@ -30,6 +30,17 @@ module.exports = (app, passport) => {
 				res.json({success: true, result: result});
 			});
 
+		})
+		.delete((req, res) => {
+			let symbol = req.query.symbol;
+
+			stockUtil.removeSymbol(symbol, (success, result) => {
+				if(success === false) {
+					return res.json({success: false, message: result})
+				}
+
+				res.json({success: true});
+			});
 		});
 
 	app.get("/api/stock_quotes", (req, res) => {
