@@ -18,6 +18,7 @@ module.exports = {
     addSymbol: (symbol, callback) => {
         let errorMessage = "Failed to add stock. Please try again later.";
 
+        symbol = symbol.toUpperCase();
         Stock.findOne({symbol: symbol}, (err, stock) => {
             if(err) { return callback(false, errorMessage); }
 

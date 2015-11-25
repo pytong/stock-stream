@@ -42,17 +42,29 @@
         }
 
         $scope.addStock = (symbol) => {
-            StockService.symbols().save({symbol: symbol}, (res) => {
-                if(res.success === true) {
-                    $scope.drawChart();
-                    $(".symbol").val("");
-                } else {
-                    $scope.errorMessage = res.message;
+            $scope.errorMessage = "";
+
+            StockService.isValidSymbol().get({symbol: symbol}, (res) => {
+                $(".symbol").val("");
+
+                if(res.isValid === false) {
+                    $scope.errorMessage = "Invalid symbol.";
+                    return;
                 }
+
+                StockService.symbols().save({symbol: symbol}, (res) => {
+                    if(res.success === true) {
+                        $scope.drawChart();
+                    } else {
+                        $scope.errorMessage = res.message;
+                    }
+                });
             });
         }
 
         $scope.removeStock = (symbol) => {
+            $scope.errorMessage = "";
+
             StockService.symbols().delete({symbol: symbol}, (res) => {
                 if(res.success === true) {
                     $scope.drawChart();

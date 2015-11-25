@@ -62,3 +62,7 @@ body {
   color: #aaa;
   font-weight: bold;
 }
+
+.error-message {
+  margin-left: 25px;
+}

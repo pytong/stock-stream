@@ -43,18 +43,37 @@ module.exports = (app, passport) => {
 			});
 		});
 
+	app.route("/api/is_symbol_valid")
+		.get((req, res) => {
+			const DATE_FORMAT = "YYYY-MM-DD";
+
+			let today = moment().format(DATE_FORMAT),
+				aWeekAgo = moment().subtract(7, "days").format(DATE_FORMAT),
+				symbol = req.query.symbol;
+
+			yahooFinance.historical({
+			  symbol: symbol,
+			  from: aWeekAgo,
+			  to: today
+			}, (err, quotes) => {
+				if(err || quotes.length < 1) { return res.json({isValid: false}); }
+
+				res.json({isValid: true});
+			});
+		});
+
 	app.get("/api/stock_quotes", (req, res) => {
 		const DAYS_IN_YEAR = 365,
 			  DATE_FORMAT = "YYYY-MM-DD";
 
-		let currentDate = moment().format(DATE_FORMAT),
+		let today = moment().format(DATE_FORMAT),
 			aYearAgo = moment().subtract(DAYS_IN_YEAR, "days").format(DATE_FORMAT),
 			symbol = req.query.symbol;
 
 		yahooFinance.historical({
 		  symbol: symbol,
 		  from: aYearAgo,
-		  to: currentDate
+		  to: today
 		}, (err, quotes) => {
 		  if(err || quotes.length < 1) { return res.json({success: false, message: "Stock not found."}); }
 

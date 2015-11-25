@@ -12,5 +12,9 @@
             return $resource(appUrl + "/api/symbols", {symbol: "@symbol"});
         }
 
+        this.isValidSymbol = () => {
+            return $resource(appUrl + "/api/is_symbol_valid", {symbol: "@symbol"});
+        }
+
     }]);
 })(app);
