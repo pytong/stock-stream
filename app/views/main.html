@@ -2,11 +2,12 @@
 <div id="chart"></div>
 
 <div class="stock-labels row">
-    <div class="stock-label col-sm-12 col-md-3" ng-repeat="symbol in symbols">
+    <div class="stock-label col-sm-12 col-md-2" ng-repeat="symbol in symbols">
         {{ symbol }}<span class="remove-stock" ng-click="removeStock(symbol)">x</span>
     </div>
 </div>
 
+<div class="sync-realtime">Syncs in realtime across clients</div>
 <form novalidate name="form" ng-submit="addStock(stock.symbol)" method="post">
     <div class="col-md-8">
         <input type="text" class="form-control symbol text-center" placeholder="Stock Symbol" ng-model="stock.symbol">
@@ -17,3 +18,7 @@
 </form>
 
 <h2><div class="label label-danger error-message">{{ errorMessage }}</div></h2>
+
+<div class="footer text-center">
+	Angular Fullstack | <a href="https://github.com/pytong/stock-stream" target="_blank">GitHub</a>
+</div>

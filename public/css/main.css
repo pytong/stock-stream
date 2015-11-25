@@ -63,6 +63,15 @@ body {
   font-weight: bold;
 }
 
-.error-message {
+.sync-realtime {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.sync-realtime, .error-message {
   margin-left: 25px;
+}
+
+.footer {
+  margin-top: 130px;
 }
