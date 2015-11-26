@@ -12,7 +12,6 @@ Features:
 
 3. As a user, I can remove stocks.
 
-4. As a user, I can see changes in real-time when any other user adds or removes a stock.
 
 # Quick Start Guide
 
@@ -33,7 +32,7 @@ You must have the following installed:
 Create a file named `.env` in the root directory. This file should contain:
 
 ```
-MONGO_URI=mongodb://localhost:27017/voting
+MONGO_URI=mongodb://localhost:27017/stock-stream
 APP_URL=https://voting-pytong.c9.io/
 PORT=8080
 ```

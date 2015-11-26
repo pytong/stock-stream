@@ -2,13 +2,12 @@
 
 require('dotenv').load(); // Only required for running locally
 
-var express = require('express');
-var routes = require('./app/routes/index.js');
-var mongoose = require('mongoose');
-var session = require('express-session');
-var FileStore = require('session-file-store')(session);
-var app = express();
-
+let express = require('express'),
+	routes = require('./app/routes/index.js'),
+	mongoose = require('mongoose'),
+	session = require('express-session'),
+	FileStore = require('session-file-store')(session),
+	app = express();
 
 mongoose.connect(process.env.MONGO_URI);
 
@@ -20,7 +19,7 @@ app.use('/node_modules', express.static('node_modules'));
 app.use('/', express.static('app'));
 
 // app.use(session({
-// 	secret: 'greentrees',
+// 	secret: 'chartthemarket',
 // 	resave: false,
 // 	saveUninitialized: true
 // }));
@@ -32,7 +31,7 @@ app.use(session({
 
 routes(app);
 
-var port = process.env.PORT || 8080;
+let port = process.env.PORT || 8080;
 app.listen(port,  function () {
 	console.log('Node.js listening on port ' + port + '...');
 });
