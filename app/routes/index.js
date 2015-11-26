@@ -6,8 +6,7 @@ let path = process.cwd(),
 	stockUtil = require("../utils/stockUtil");
 
 
-
-module.exports = (app, passport) => {
+module.exports = (app) => {
 
 	app.route("/api/symbols")
 		.post((req, res) => {
@@ -90,7 +89,7 @@ module.exports = (app, passport) => {
 	});
 
 	app.get("*", (req, res)  => {
-			res.sendFile(path + "/public/index.html");
-		});
+		res.sendFile(path + "/public/index.html");
+	});
 
 };

@@ -43,10 +43,9 @@
 
         $scope.addStock = (symbol) => {
             $scope.errorMessage = "";
+            $(".symbol").val("");
 
             StockService.isValidSymbol().get({symbol: symbol}, (res) => {
-                $(".symbol").val("");
-
                 if(res.isValid === false) {
                     $scope.errorMessage = "Invalid symbol.";
                     return;
@@ -68,7 +67,6 @@
             StockService.symbols().delete({symbol: symbol}, (res) => {
                 if(res.success === true) {
                     $scope.drawChart();
-                    $(".symbol").val("");
                 } else {
                     $scope.errorMessage = res.message;
                 }

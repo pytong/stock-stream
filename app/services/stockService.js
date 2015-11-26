@@ -2,7 +2,12 @@
 
 ((app) => {
     app.service("StockService", ["$resource", "$location", function($resource, $location) {
-        let appUrl = $location.protocol() + "://" + $location.host();
+        let appUrl = $location.protocol() + "://" + $location.host(),
+            port = ($location.port());
+
+        if(port) {
+            appUrl += (":" + port);
+        }
 
         this.quotes = () => {
             return $resource(appUrl + "/api/stock_quotes?symbol=:symbol", {symbol: "@symbol"});
