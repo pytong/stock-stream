@@ -33,7 +33,7 @@ Create a file named `.env` in the root directory. This file should contain:
 
 ```
 MONGO_URI=mongodb://localhost:27017/stock-stream
-APP_URL=https://voting-pytong.c9.io/
+APP_URL=https://stock-stream-pytong.c9.io/
 PORT=8080
 ```
 
