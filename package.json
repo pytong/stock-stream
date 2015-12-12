@@ -1,14 +1,14 @@
 {
-  "name": "clementinejs-fcc",
+  "name": "stock-stream",
   "version": "1.0.1",
-  "description": "The elegant and lightweight boilerplate for full stack JavaScript.",
+  "description": "This application allows you to chart the stock market",
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/johnstonbl01/clementinejs-fcc"
+    "url": "https://github.com/pytong/stock-stream"
   },
-  "homepage": "http://www.clementinejs.com/",
-  "bugs": "https://github.com/johnstonbl01/clementinejs-fcc/issues",
+  "homepage": "https://stock-stream.herokuapp.com",
+  "bugs": "https://github.com/pytong/stock-stream/issues",
   "keywords": [
     "MongoDB",
     "Mongoose",
@@ -16,12 +16,12 @@
     "Express",
     "Node",
     "javascript",
-    "boilerplate"
+    "stock stream"
   ],
   "scripts": {
     "start": "node server.js"
   },
-  "author": "Blake Johnston",
+  "author": "Puiyee Tong",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^1.2.0",
