@@ -2,7 +2,7 @@
 
 ((app) => {
     app.service("StockService", ["$resource", "$location", function($resource, $location) {
-        let appUrl = $location.protocol() + "://" + $location.host(),
+        var appUrl = $location.protocol() + "://" + $location.host(),
             port = ($location.port());
 
         if(port) {

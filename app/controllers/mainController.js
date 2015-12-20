@@ -11,7 +11,7 @@
                     return;
                 }
 
-                let seriesOptions = [],
+                var seriesOptions = [],
                     seriesCounter = 0;
 
                 $scope.symbols = res.result;
